@@ -2,11 +2,15 @@
 import { useState, useEffect, useRef } from "react";
 import { io, Socket } from "socket.io-client";
 
+type Message =
+  | { type: "system"; text: string }
+  | { type: "chat"; user: string; text: string };
+
 export default function Home() {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [username, setUsername] = useState("");
   const [currentUser, setCurrentUser] = useState("");
-  const [messages, setMessages] = useState<any[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState("");
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -29,11 +33,11 @@ export default function Home() {
       newSocket.emit("join", username);
     });
 
-    newSocket.on("chat message", (msg) => {
+    newSocket.on("chat message", (msg: { user: string; text: string }) => {
       setMessages((prev) => [...prev, { type: "chat", ...msg }]);
     });
 
-    newSocket.on("system", (msg) => {
+    newSocket.on("system", (msg: string) => {
       setMessages((prev) => [...prev, { type: "system", text: msg }]);
     });
   };
