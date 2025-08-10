@@ -49,7 +49,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
+    <div className="flex flex-col h-screen bg-gray-100 text-black">
       {/* Header */}
       <div className="bg-blue-500 text-white p-4 text-lg font-bold text-center">
         💬 Fullscreen Chat
@@ -59,7 +59,7 @@ export default function Home() {
       {!currentUser ? (
         <div className="flex flex-col items-center justify-center flex-1 gap-3">
           <input
-            className="p-3 border border-gray-300 rounded-full w-72 text-lg"
+            className="p-3 border border-gray-300 rounded-full w-72 text-lg text-black"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Enter your name..."
@@ -86,7 +86,7 @@ export default function Home() {
               ) : (
                 <div
                   key={idx}
-                  className={`max-w-[60%] px-4 py-2 rounded-2xl mb-2 break-words ${
+                  className={`max-w-[60%] px-4 py-2 rounded-2xl mb-2 break-words text-black ${
                     msg.user === currentUser
                       ? "bg-green-200 self-end rounded-br-none"
                       : "bg-white self-start rounded-bl-none"
@@ -102,7 +102,7 @@ export default function Home() {
           {/* Input */}
           <div className="flex p-3 bg-gray-200 border-t border-gray-300">
             <input
-              className="flex-1 p-3 border border-gray-300 rounded-full mr-2 text-lg"
+              className="flex-1 p-3 border border-gray-300 rounded-full mr-2 text-lg text-black"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Type your message..."
